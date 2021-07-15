@@ -5,4 +5,4 @@ const Recordings: React.FC<Props> = (props) => {
 };
 Recordings.defaultProps = {};
 
-export default Recordings;
+export default React.memo(Recordings);

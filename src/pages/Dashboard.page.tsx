@@ -8,4 +8,4 @@ const Dashboard: React.FC<Props> = (props) => {
 }
  Dashboard.defaultProps={};
 
- export default Dashboard;
+ export default React.memo(Dashboard);

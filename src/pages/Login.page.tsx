@@ -7,4 +7,4 @@ const Login: React.FC<Props> = (props) => {
 };
 Login.defaultProps = {};
 
-export default Login;
+export default React.memo(Login);

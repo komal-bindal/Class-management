@@ -7,4 +7,4 @@ const Signup: React.FC<Props> = (props) => {
 };
 Signup.defaultProps = {};
 
-export default Signup;
+export default React.memo(Signup);
