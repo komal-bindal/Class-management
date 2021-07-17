@@ -5,7 +5,11 @@ module.exports = {
     extend: {
       padding: {
         "p-1.75": '7px',
-       }
+       },
+       fontSize: {
+        '4.5xl': '2.5rem',
+
+      }
     },
   },
   variants: {
