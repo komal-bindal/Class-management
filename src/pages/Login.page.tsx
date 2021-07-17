@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../components/SubmitButton";
 
 interface Props {}
 
@@ -10,7 +11,7 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col items-start px-11 py-3 max-w-96 mx-auto">
-      <h1 className="text-4xl pb-2">
+      <h1 className="text-4xl py-2">
         Log In to <span className="text-blue-600">DevsLane</span>
       </h1>
 
@@ -84,8 +85,11 @@ const Login: React.FC<Props> = (props) => {
           )}
         </div>
       </form>
+      <div className = "flex md:flex-col">
+        <Button>Log In</Button>
+      </div>
       <button
-        className="bg-blue-200"
+        className="bg-blue-200 mt-6"
         onClick={() => setOnClickValue(!onClickValue)}
       >
         Click
