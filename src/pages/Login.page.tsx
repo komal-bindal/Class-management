@@ -139,8 +139,8 @@ const Login: React.FC<Props> = (props) => {
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div>Show Password</div>
+        <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center ">
+          <div className  = "flex-shrink-0 pb-5 md:pb-0">Show Password</div>
           <div className="flex items-center">
             {isSubmitting && !(passwordError || emailError) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
