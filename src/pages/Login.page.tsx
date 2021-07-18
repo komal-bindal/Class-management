@@ -9,44 +9,50 @@ interface Props {}
 
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
-  const {isSubmitting, getFieldProps,handleSubmit, errors, touched, isValid} = useFormik({
+  const {
+    isSubmitting,
+    getFieldProps,
+    handleSubmit,
+    errors,
+    touched,
+    isValid,
+  } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: (data) => {
-      console.log("submitting" , data) 
+      console.log("submitting", data);
       setTimeout(() => {
         console.log("form submitted");
         history.push("/dashboard");
       }, 5000);
     },
-    validationSchema : yup.object().required().shape({
-      email:yup.string().required().email(),
-      password: yup.string().required().min(8)
-    })
+    validationSchema: yup
+      .object()
+      .required()
+      .shape({
+        email: yup.string().required().email(),
+        password: yup.string().required().min(8),
+      }),
   });
   console.log(errors.password);
   console.log(touched.password);
 
   return (
-    <div className="flex flex-col items-start justify-center px-11 py-3 max-w-96 mx-auto">
+    <div className="flex flex-col items-start justify-center px-11 py-3 max-w-130 mx-auto">
       <h1 className="text-4xl pb-2">
         Log In to <span className="text-blue-600">DevsLane</span>
       </h1>
       <h3 className="text-sm font-semibold pb-12 ">
         New here?{" "}
         <Link to="/signup">
-
           <span className="underline text-blue-600">Create an account</span>
         </Link>
       </h3>
 
-      <form
-        className="w-full text-sm"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex flex-col pt-4">
+      <form className="w-full text-sm" onSubmit={handleSubmit}>
+        <div className="flex flex-col pt-2">
           <div className="flex">
             <svg
               className="text-blue-500 "
@@ -71,17 +77,15 @@ const Login: React.FC<Props> = (props) => {
               type="email"
               placeholder="Email id"
               autoComplete="email"
-             {...getFieldProps("email")}
+              {...getFieldProps("email")}
             ></input>
           </div>
           {touched.email && (
             <div className="text-red-500 pl-6">{errors.email}</div>
           )}
-          {(!errors.email || !touched.email)&& (
-            <div className="h-5 "></div>
-          )}
+          {(!errors.email || !touched.email) && <div className="h-5 "></div>}
         </div>
-        <div className="flex flex-col pt-4 mb-3">
+        <div className="flex flex-col pt-2 mb-3">
           <div className="flex">
             <svg
               className="text-blue-500"
@@ -105,28 +109,26 @@ const Login: React.FC<Props> = (props) => {
               className="pl-3 pb-3 w-full border-b outline-none"
               id="password"
               type="password"
-            
               placeholder="Password"
-            {...getFieldProps("password")}
+              {...getFieldProps("password")}
               autoComplete="current-password"
-              
             ></input>
           </div>
           {touched.password && (
             <div className="text-red-500 pl-6">{errors.password}</div>
           )}
-          {(!errors.password || !touched.password)&& (
+          {(!errors.password || !touched.password) && (
             <div className="h-5"></div>
           )}
         </div>
 
-        <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center ">
-          <div className="flex-shrink-0 pb-5 md:pb-0">Show Password</div>
+        <div className="flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
+          <div className="pb-5 xs:pb-0">Show Password</div>
           <div className="flex items-center">
             {isSubmitting && !(errors.password || errors.email) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
             )}
-            <SubmitButton disabled = {!isValid}>Log In</SubmitButton>
+            <SubmitButton disabled={!isValid}>Log In</SubmitButton>
           </div>
         </div>
         <div className="mt-14 flex justify-center mb-2">
