@@ -1,8 +1,14 @@
 import React from "react";
-interface Props {}
+import { ButtonHTMLAttributes } from "react";
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+}
 const Button: React.FC<Props> = (props) => {
   return (
-    <button className="bg-blue-600 text-white text-sm py-2 px-5 flex-shrink-0 shadow-xl rounded-md " type = "submit">
+    <button
+      disabled={props.disabled}
+      className="bg-blue-600 text-white text-sm py-2 px-5 flex-shrink-0 shadow-xl rounded-md "
+      type="submit"
+    >
       {props.children}
     </button>
   );

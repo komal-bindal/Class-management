@@ -1,81 +1,50 @@
 import React from "react";
-import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
 import * as yup from "yup";
+import { useFormik } from "formik";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-  const [data, setData] = useState({ email: "", password: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isTouched, setIsTouched] = useState({ email: false, password: false });
-
-  let emailError = "";
-  let passwordError = "";
   const history = useHistory();
-
-  const dataValidator = yup
-    .object()
-    .required()
-    .shape({
-      email: yup.string().required().email(),
-      password: yup.number().required().min(8),
-    });
-  try {
-    let isDataValid = dataValidator.validateSync(data);
-  } catch (e) {
-    console.log("data is not valid", e.message);
-  }
-
-  if (!data.email) {
-    emailError = "Email address is required";
-  } else if (!data.email.includes("@")) {
-    emailError = "Please enter valid email";
-  }
-
-  if (!data.password) {
-    passwordError = "Password is required";
-  } else if (data.password.length < 8) {
-    passwordError = "Password should be atleast 8 characters";
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    setIsTouched({ ...isTouched, [event.target.name]: true });
-  };
+  const {isSubmitting, getFieldProps,handleSubmit, errors, touched, isValid} = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (data) => {
+      console.log("submitting" , data) 
+      setTimeout(() => {
+        console.log("form submitted");
+        history.push("/dashboard");
+      }, 5000);
+    },
+    validationSchema : yup.object().required().shape({
+      email:yup.string().required().email(),
+      password: yup.string().required().min(8)
+    })
+  });
+  console.log(errors.password);
+  console.log(touched.password);
 
   return (
     <div className="flex flex-col items-start justify-center px-11 py-3 max-w-96 mx-auto">
       <h1 className="text-4xl pb-2">
         Log In to <span className="text-blue-600">DevsLane</span>
       </h1>
-
       <h3 className="text-sm font-semibold pb-12 ">
         New here?{" "}
         <Link to="/signup">
+
           <span className="underline text-blue-600">Create an account</span>
         </Link>
       </h3>
 
       <form
         className="w-full text-sm"
-        onSubmit={(event) => {
-          event.preventDefault();
-          setIsSubmitting(true);
-          if (emailError || passwordError) {
-            return;
-          }
-          setTimeout(() => {
-            console.log(data);
-            setIsSubmitting(false);
-            history.push("/dashboard");
-          }, 5000);
-        }}
+        onSubmit={handleSubmit}
       >
         <div className="flex flex-col pt-4">
           <div className="flex">
@@ -100,18 +69,15 @@ const Login: React.FC<Props> = (props) => {
               className="pl-3 pb-3 w-full border-b outline-none"
               id="email"
               type="email"
-              name="email"
               placeholder="Email id"
-              value={data.email}
               autoComplete="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
+             {...getFieldProps("email")}
             ></input>
           </div>
-          {isTouched.email && (
-            <div className="text-red-500 pl-6">{emailError}</div>
+          {touched.email && (
+            <div className="text-red-500 pl-6">{errors.email}</div>
           )}
-          {(emailError === "" || !isTouched.email) && (
+          {(!errors.email || !touched.email)&& (
             <div className="h-5 "></div>
           )}
         </div>
@@ -139,18 +105,17 @@ const Login: React.FC<Props> = (props) => {
               className="pl-3 pb-3 w-full border-b outline-none"
               id="password"
               type="password"
-              name="password"
+            
               placeholder="Password"
-              value={data.password}
+            {...getFieldProps("password")}
               autoComplete="current-password"
-              onChange={handleChange}
-              onBlur={handleBlur}
+              
             ></input>
           </div>
-          {isTouched.password && (
-            <div className="text-red-500 pl-6">{passwordError}</div>
+          {touched.password && (
+            <div className="text-red-500 pl-6">{errors.password}</div>
           )}
-          {(passwordError === "" || !isTouched.password) && (
+          {(!errors.password || !touched.password)&& (
             <div className="h-5"></div>
           )}
         </div>
@@ -158,10 +123,10 @@ const Login: React.FC<Props> = (props) => {
         <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center ">
           <div className="flex-shrink-0 pb-5 md:pb-0">Show Password</div>
           <div className="flex items-center">
-            {isSubmitting && !(passwordError || emailError) && (
+            {isSubmitting && !(errors.password || errors.email) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
             )}
-            <SubmitButton>Log In</SubmitButton>
+            <SubmitButton disabled = {!isValid}>Log In</SubmitButton>
           </div>
         </div>
         <div className="mt-14 flex justify-center mb-2">
