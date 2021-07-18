@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
+import * as yup from "yup";
 
 interface Props {}
 
@@ -13,6 +14,20 @@ const Login: React.FC<Props> = (props) => {
 
   let emailError = "";
   let passwordError = "";
+  const history = useHistory();
+
+  const dataValidator = yup
+    .object()
+    .required()
+    .shape({
+      email: yup.string().required().email(),
+      password: yup.number().required().min(8),
+    });
+  try {
+    let isDataValid = dataValidator.validateSync(data);
+  } catch (e) {
+    console.log("data is not valid", e.message);
+  }
 
   if (!data.email) {
     emailError = "Email address is required";
@@ -58,6 +73,7 @@ const Login: React.FC<Props> = (props) => {
           setTimeout(() => {
             console.log(data);
             setIsSubmitting(false);
+            history.push("/dashboard");
           }, 5000);
         }}
       >
@@ -92,7 +108,7 @@ const Login: React.FC<Props> = (props) => {
               onBlur={handleBlur}
             ></input>
           </div>
-          {isTouched.email  && (
+          {isTouched.email && (
             <div className="text-red-500 pl-6">{emailError}</div>
           )}
           {(emailError === "" || !isTouched.email) && (
@@ -140,7 +156,7 @@ const Login: React.FC<Props> = (props) => {
         </div>
 
         <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center ">
-          <div className  = "flex-shrink-0 pb-5 md:pb-0">Show Password</div>
+          <div className="flex-shrink-0 pb-5 md:pb-0">Show Password</div>
           <div className="flex items-center">
             {isSubmitting && !(passwordError || emailError) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
