@@ -4,6 +4,7 @@ import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import Input from "../components/Input";
 
 interface Props {}
 
@@ -52,9 +53,9 @@ const Login: React.FC<Props> = (props) => {
       </h3>
 
       <form className="w-full text-sm" onSubmit={handleSubmit}>
-        <div className="flex flex-col pt-2">
-          <div className="flex">
-            <svg
+
+        <div className="flex pt-2 w-full">
+          <svg
               className="text-blue-500 "
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -68,61 +69,44 @@ const Login: React.FC<Props> = (props) => {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <label htmlFor="email" className="sr-only">
-              Email id
-            </label>
-            <input
-              className="pl-3 pb-3 w-full border-b outline-none"
-              id="email"
-              type="email"
-              placeholder="Email id"
-              autoComplete="email"
-              {...getFieldProps("email")}
-            ></input>
-          </div>
-          {touched.email && (
-            <div className="text-red-500 pl-6">{errors.email}</div>
-          )}
-          {(!errors.email || !touched.email) && <div className="h-5 "></div>}
-        </div>
-        <div className="flex flex-col pt-2 mb-3">
-          <div className="flex">
-            <svg
-              className="text-blue-500"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            <label htmlFor="password" className="sr-only">
-              Password
-            </label>
-
-            <input
-              className="pl-3 pb-3 w-full border-b outline-none"
-              id="password"
-              type="password"
-              placeholder="Password"
-              {...getFieldProps("password")}
-              autoComplete="current-password"
-            ></input>
-          </div>
-          {touched.password && (
-            <div className="text-red-500 pl-6">{errors.password}</div>
-          )}
-          {(!errors.password || !touched.password) && (
-            <div className="h-5"></div>
-          )}
+          <Input
+            id="email"
+            placeholder="Email Id"
+            touched={touched.email}
+            error={errors.email}
+            type="email"
+            {...getFieldProps("email")}
+            autoComplete="email"
+          ></Input>
         </div>
 
-        <div className="flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
+        <div className="flex pt-2 mb-3 w-full">
+          <svg
+            className="text-blue-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <Input
+            id="password"
+            placeholder="Password"
+            touched={touched.password}
+            error={errors.password}
+            type="password"
+            {...getFieldProps("password")}
+            autoComplete="current-password"
+          ></Input>
+        </div>
+
+        <div className=" flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
           <div className="pb-5 xs:pb-0">Show Password</div>
           <div className="flex items-center">
             {isSubmitting && !(errors.password || errors.email) && (
