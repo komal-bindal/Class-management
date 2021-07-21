@@ -4,7 +4,7 @@ import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 import { FiLock, FiUser } from "react-icons/fi";
 import {HiOutlineAtSymbol} from "react-icons/hi"
 

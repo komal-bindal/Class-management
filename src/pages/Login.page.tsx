@@ -6,7 +6,7 @@ import { FiLock, FiUser } from "react-icons/fi";
 
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 
 interface Props {}
 
