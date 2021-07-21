@@ -10,11 +10,14 @@ module.exports = {
         "4.5xl": "2.5rem",
       },
       maxWidth: {
-        130: "440px",
+        100: "400px",
       },
       screens: {
         xs:"576px"
-      }
+      },
+      fill: theme => ({
+        'blue': theme('colors.blue.100'),
+      })
     },
   },
   variants: {

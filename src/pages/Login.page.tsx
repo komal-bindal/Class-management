@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
+import { FiLock, FiUser } from "react-icons/fi";
+
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input";
@@ -41,9 +43,9 @@ const Login: React.FC<Props> = (props) => {
   console.log(touched.password);
 
   return (
-    <div className="flex flex-col items-start justify-center px-11 py-3 max-w-130 mx-auto">
-      <h1 className="text-4xl pb-2">
-        Log In to <span className="text-blue-600">DevsLane</span>
+    <div className="flex flex-col items-start justify-center px-11 py-3 w-full max-w-100 mx-auto">
+      <h1 className="text-4xl pb-2 ">
+        Log In to <span className="text-blue-600">CORK</span>
       </h1>
       <h3 className="text-sm font-semibold pb-12 ">
         New here?{" "}
@@ -51,50 +53,17 @@ const Login: React.FC<Props> = (props) => {
           <span className="underline text-blue-600">Create an account</span>
         </Link>
       </h3>
-
       <form className="w-full text-sm" onSubmit={handleSubmit}>
-
-        <div className="flex pt-2 w-full">
-          <svg
-              className="text-blue-500 "
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
           <Input
             id="email"
             placeholder="Email Id"
             touched={touched.email}
             error={errors.email}
+            Icon = {FiUser}
             type="email"
             {...getFieldProps("email")}
             autoComplete="email"
           ></Input>
-        </div>
-
-        <div className="flex pt-2 mb-3 w-full">
-          <svg
-            className="text-blue-500"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
           <Input
             id="password"
             placeholder="Password"
@@ -103,9 +72,9 @@ const Login: React.FC<Props> = (props) => {
             type="password"
             {...getFieldProps("password")}
             autoComplete="current-password"
+            Icon = {FiLock}
+            className = "mb-3"
           ></Input>
-        </div>
-
         <div className=" flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
           <div className="pb-5 xs:pb-0">Show Password</div>
           <div className="flex items-center">
