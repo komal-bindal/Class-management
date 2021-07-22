@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
 import { FiLock, FiUser } from "react-icons/fi";
 
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
 
 interface Props {}
 
@@ -54,34 +54,42 @@ const Login: React.FC<Props> = (props) => {
         </Link>
       </h3>
       <form className="w-full text-sm" onSubmit={handleSubmit}>
-          <Input
-            id="email"
-            placeholder="Email Id"
-            touched={touched.email}
-            error={errors.email}
-            Icon = {FiUser}
-            type="email"
-            {...getFieldProps("email")}
-            autoComplete="email"
-          ></Input>
-          <Input
-            id="password"
-            placeholder="Password"
-            touched={touched.password}
-            error={errors.password}
-            type="password"
-            {...getFieldProps("password")}
-            autoComplete="current-password"
-            Icon = {FiLock}
-            className = "mb-3"
-          ></Input>
+        <Input
+          id="email"
+          placeholder="Email Id"
+          touched={touched.email}
+          error={errors.email}
+          Icon={FiUser}
+          type="email"
+          {...getFieldProps("email")}
+          autoComplete="email"
+        ></Input>
+        <Input
+          id="password"
+          placeholder="Password"
+          touched={touched.password}
+          error={errors.password}
+          type="password"
+          {...getFieldProps("password")}
+          autoComplete="current-password"
+          Icon={FiLock}
+          className="mb-3"
+        ></Input>
         <div className=" flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
           <div className="pb-5 xs:pb-0">Show Password</div>
           <div className="flex items-center">
             {isSubmitting && !(errors.password || errors.email) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
             )}
-            <SubmitButton disabled={!isValid}>Log In</SubmitButton>
+            <Button
+              disabled={!isValid}
+              type="submit"
+              theme="primary"
+              outline={false}
+              rounded={false}
+            >
+              Log In
+            </Button>
           </div>
         </div>
         <div className="mt-14 flex justify-center mb-2">
