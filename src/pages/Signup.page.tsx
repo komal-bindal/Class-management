@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import SubmitButton from "../components/SubmitButton";
 import { ImSpinner } from "react-icons/im";
 import * as yup from "yup";
 import { useFormik } from "formik";
