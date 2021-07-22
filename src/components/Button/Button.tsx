@@ -13,19 +13,19 @@ const Button: React.FC<Props> = (props) => {
   let themeClasses = "";
   let roundedClasses = "";
 
-  if (props.theme == "primary") {
+  if (props.theme === "primary") {
     themeClasses = props.outline
       ? "text-indigo-600 border border-indigo-600 hover:bg-indigo-600  hover:text-white hover:shadow-2xl"
       : "text-white bg-indigo-600 shadow-2xl hover:shadow-none";
-  } else if (props.theme == "warning") {
+  } else if (props.theme === "warning") {
     themeClasses = props.outline
       ? "text-yellow-600 border border-yellow-600 hover:bg-yellow-600 hover:text-white hover:shadow-2xl"
       : "text-white bg-yellow-600 shadow-2xl hover:shadow-none";
-  } else if (props.theme == "success") {
+  } else if (props.theme === "success") {
     themeClasses = props.outline
       ? "text-green-600 border border-green-600 hover:bg-green-600 hover:text-white hover:shadow-2xl"
       : "text-white bg-green-600 shadow-2xl hover:shadow-none";
-  } else if (props.theme == "info") {
+  } else if (props.theme === "info") {
     themeClasses = props.outline
       ? "text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-2xl"
       : "text-white bg-blue-600 shadow-2xl hover:shadow-none";

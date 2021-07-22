@@ -7,13 +7,13 @@ interface Props {
 
 const ProgressBar: React.FC<Props> = ({ progress, theme }) => {
   let themeClasses = "";
-  if (theme == "primary") {
+  if (theme === "primary") {
     themeClasses = "bg-indigo-600";
-  } else if (theme == "warning") {
+  } else if (theme === "warning") {
     themeClasses = "bg-yellow-600";
-  } else if (theme == "success") {
+  } else if (theme === "success") {
     themeClasses = "bg-green-600";
-  } else if (theme == "info") {
+  } else if (theme === "info") {
     themeClasses = "bg-blue-600";
   } else {
     themeClasses = "bg-red-600";

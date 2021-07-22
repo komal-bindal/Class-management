@@ -13,29 +13,29 @@ const Alerts: React.FC<Props> = ({ title, children, textTheme, theme }) => {
   const handleClick = () => {
     setIsClose(true);
   };
-  if (textTheme == "primary") {
+  if (textTheme === "primary") {
     className =
-      theme == "solid"
+      theme === "solid"
         ? "text-indigo-600 bg-indigo-100"
         : "text-gray-600 border border-indigo-600";
-  }else if (textTheme == "warning") {
+  } else if (textTheme === "warning") {
     className =
-      theme == "solid"
+      theme === "solid"
         ? "text-yellow-600 bg-yellow-100"
         : "text-gray-600 border border-yellow-600";
-  }else if (textTheme == "success") {
+  } else if (textTheme === "success") {
     className =
-      theme == "solid"
+      theme === "solid"
         ? "text-green-600 bg-green-100"
         : "text-gray-600 border border-green-600";
-  }else if (textTheme == "info") {
+  } else if (textTheme === "info") {
     className =
-      theme == "solid"
+      theme === "solid"
         ? "text-blue-600 bg-blue-100"
         : "text-gray-600 border border-blue-600";
-  }else {
+  } else {
     className =
-      theme == "solid"
+      theme === "solid"
         ? "text-red-600 bg-red-100"
         : "text-gray-600 border border-red-600";
   }
