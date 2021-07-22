@@ -21,7 +21,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      translate: ['active', 'group-hover'],
+      transform: ['hover', 'focus'],
+    },
   },
   plugins: [],
 };
