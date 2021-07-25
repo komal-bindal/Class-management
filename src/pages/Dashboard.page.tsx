@@ -1,13 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-interface Props {}
-const Dashboard: React.FC<Props> = (props) => {
-    return( <div>
-        This is Dashboard page
-        <Link to = "/recordings">Go to recordings page</Link>
-    </div>
-    );
-}
- Dashboard.defaultProps={};
+import React, { useEffect, useState } from 'react'
+import {Datum} from "../groupInterrfaces"
+import { fetchGroups } from '../api'
+import ListGroup from '../components/ListGroup/ListGroup'
 
- export default React.memo(Dashboard);
+interface Props {
+  query?: string;
+}
+
+const Dashboard: React.FC<Props> = ({ query }) => {
+  const [dataList, setDataList] = useState<any>([])
+
+  useEffect(() => {
+    fetchGroups({ status: "all-groups", query }).then((response) => {
+      setDataList(response.data.data);
+    });
+  }, [query]);
+
+  return (
+      <div className = "">
+    <div className=" border rounded-md max-w-3xl mx-auto my-6">
+      {dataList.map((data:Datum, index:number) => {
+        <ListGroup></ListGroup>;
+      })}
+    </div>
+    </div>
+  )
+}
+Dashboard.defaultProps = {};
+
+export default React.memo(Dashboard);

@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import { login } from "../api";
+import ListGroup from "../components/ListGroup/ListGroup";
 
 interface Props {}
 
@@ -26,7 +27,9 @@ const Login: React.FC<Props> = (props) => {
       password: "",
     },
     onSubmit: (data) => {
-      login(data);
+      login(data).then(() => {
+        history.push("/dashboard");
+      });
     },
     validationSchema: yup
       .object()
