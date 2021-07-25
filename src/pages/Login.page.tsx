@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
+import { login } from "../api";
 
 interface Props {}
 
@@ -25,11 +26,7 @@ const Login: React.FC<Props> = (props) => {
       password: "",
     },
     onSubmit: (data) => {
-      console.log("submitting", data);
-      setTimeout(() => {
-        console.log("form submitted");
-        history.push("/dashboard");
-      }, 5000);
+      login(data);
     },
     validationSchema: yup
       .object()
