@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Group } from "./groupInterrfaces";
 
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
@@ -73,6 +72,6 @@ interface GroupRequest {
 export const fetchGroups = (data?: GroupRequest) => {
   const url = BASE_URL + "/groups";
   return axios
-    .get<Group>(url, { params: data})
+    .get(url, { params: data})
     
 };
