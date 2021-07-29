@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
-import { login } from "../api";
+import { login, LS_LOGIN_TOKEN } from "../api";
 import ListGroup from "../components/ListGroup/ListGroup";
 
 interface Props {}
@@ -29,7 +29,11 @@ const Login: React.FC<Props> = (props) => {
     onSubmit: (data) => {
       login(data).then(() => {
         history.push("/dashboard");
-      });
+        console.log("hi")
+      }).catch((e)=>{
+        console.log("error", e);
+        window.location.href = "/login"
+      } );
     },
     validationSchema: yup
       .object()

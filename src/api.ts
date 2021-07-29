@@ -1,5 +1,4 @@
 import axios from "axios";
-
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
   if (!token) {
@@ -19,7 +18,7 @@ axios.interceptors.response.use(undefined, function(error){
     return Promise.reject(error);
 })
 
-interface LoginData {
+interface LoginRequest {
   email: string;
   password: string;
 }
@@ -46,7 +45,7 @@ interface Issue {
 const BASE_URL = "https://api-dev.domecompass.com";
 export const LS_LOGIN_TOKEN = "login_token";
 
-export const login = (data: LoginData) => {
+export const login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";
   console.log(data);
   return axios
@@ -55,11 +54,13 @@ export const login = (data: LoginData) => {
       console.log(response);
       localStorage.setItem(LS_LOGIN_TOKEN, response.data.token);
       console.log(response.data.token);
-    })
-    .catch((e) => {
-      console.error(e);
     });
 };
+
+export const logout = () =>{
+  localStorage.removeItem(LS_LOGIN_TOKEN);
+  window.location.href ="/login";
+}
 
 interface GroupRequest {
   limit?: number;
