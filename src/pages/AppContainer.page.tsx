@@ -1,12 +1,14 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import TopBar from "../components/TopBar/TopBar";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
 interface Props {}
 const AppContainer: React.FC<Props> = (props) => {
-  return (
+  return (<div>
+    <TopBar/>
     <div className = "flex">
         <Sidebar/>
       <Switch>
@@ -21,7 +23,7 @@ const AppContainer: React.FC<Props> = (props) => {
         </Route>
       </Switch>
 
-    </div>
+    </div></div>
   );
 };
 AppContainer.defaultProps = {};
