@@ -9,7 +9,6 @@ const ListGroup: React.FC<Props> = ({ image, name, title }) => {
     image =
       "https://www.pngitem.com/pimgs/m/537-5372558_flat-man-icon-png-transparent-png.png";
   }
-  console.log(image);
 
   return (
     <div className="flex items-center px-6 py-3 m-4 border-2 roundedd-xl">
@@ -22,8 +21,8 @@ const ListGroup: React.FC<Props> = ({ image, name, title }) => {
   );
 };
 ListGroup.defaultProps = {
-  name: "komal",
-  title: "hi",
+  name: "",
+  title: "",
 };
 
 export default React.memo(ListGroup);
