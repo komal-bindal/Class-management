@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+            {token ? <Redirect to="/dashboard"/> : <Redirect to="/login" />}
           </Route>
           <Route path={["/login", "/signup"]} exact>
             <AuthPage />
