@@ -2,28 +2,28 @@ import Input from "./Input";
 import "../../index.css";
 import * as FiIcons from "react-icons/fi";
 
-const icons = {"No Icon" : undefined, ...FiIcons}
+const icons = { "No Icon": undefined, ...FiIcons };
 export default {
   title: "Form Input",
   component: Input,
-  argTypes:{
-    Icon:{
-      options:Object.keys(icons),
+  argTypes: {
+    Icon: {
+      options: Object.keys(icons),
       mapping: icons,
-      control:{
-        type : "select",
-      }
-    }
-  }
+      control: {
+        type: "select",
+      },
+    },
+  },
 };
 
-export const main = (args:any) => <Input {...args} ></Input>;
+export const main = (args: any) => <Input {...args}></Input>;
 
 main.args = {
-  placeholder:"Username",
+  placeholder: "Username",
   touched: false,
-  error : "",
-  className:"",
+  error: "",
+  className: "",
   type: "text",
-  id :""
-}
+  id: "",
+};

@@ -27,13 +27,15 @@ const Login: React.FC<Props> = (props) => {
       password: "",
     },
     onSubmit: (data) => {
-      login(data).then(() => {
-        history.push("/dashboard");
-        console.log("hi")
-      }).catch((e)=>{
-        console.log("error", e);
-        window.location.href = "/login"
-      } );
+      login(data)
+        .then(() => {
+          history.push("/dashboard");
+          console.log("hi");
+        })
+        .catch((e) => {
+          console.log("error", e);
+          window.location.href = "/login";
+        });
     },
     validationSchema: yup
       .object()

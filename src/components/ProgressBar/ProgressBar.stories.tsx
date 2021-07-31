@@ -16,6 +16,6 @@ export default {
 export const main = (args: any) => <ProgressBar {...args}></ProgressBar>;
 
 main.args = {
-    progress:50,
-    theme:"primary"
-}
+  progress: 50,
+  theme: "primary",
+};

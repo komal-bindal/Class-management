@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input/Input";
 import { FiLock, FiUser } from "react-icons/fi";
-import {HiOutlineAtSymbol} from "react-icons/hi"
+import { HiOutlineAtSymbol } from "react-icons/hi";
 import Button from "../components/Button/Button";
 
 interface Props {}
@@ -53,36 +53,36 @@ const Signup: React.FC<Props> = (props) => {
       </h3>
 
       <form className="w-full text-sm" onSubmit={handleSubmit}>
-          <Input
-            id="username"
-            placeholder="Username"
-            touched={touched.username}
-            error={errors.username}
-            type="text"
-            {...getFieldProps("username")}
-            Icon = {FiUser}
-          ></Input>
-          <Input
-            id="email"
-            placeholder="Email Id"
-            touched={touched.email}
-            error={errors.email}
-            type="email"
-            {...getFieldProps("email")}
-            autoComplete="email"
-            Icon = {HiOutlineAtSymbol}
-          ></Input>
-          <Input
-            id="password"
-            placeholder="Password"
-            touched={touched.password}
-            error={errors.password}
-            type="password"
-            {...getFieldProps("password")}
-            autoComplete="new-password"
-            Icon = {FiLock}
-            className = "mb-3"
-          ></Input>
+        <Input
+          id="username"
+          placeholder="Username"
+          touched={touched.username}
+          error={errors.username}
+          type="text"
+          {...getFieldProps("username")}
+          Icon={FiUser}
+        ></Input>
+        <Input
+          id="email"
+          placeholder="Email Id"
+          touched={touched.email}
+          error={errors.email}
+          type="email"
+          {...getFieldProps("email")}
+          autoComplete="email"
+          Icon={HiOutlineAtSymbol}
+        ></Input>
+        <Input
+          id="password"
+          placeholder="Password"
+          touched={touched.password}
+          error={errors.password}
+          type="password"
+          {...getFieldProps("password")}
+          autoComplete="new-password"
+          Icon={FiLock}
+          className="mb-3"
+        ></Input>
         <div className="flex  mb-5">
           <input type="checkbox" id="loggedIn" className="mt-1 " />
           <label htmlFor="loggedIn" className="pl-2  text-sm text-blue-600">
@@ -95,7 +95,15 @@ const Signup: React.FC<Props> = (props) => {
             {isSubmitting && !(errors.password || errors.email) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
             )}
-            <Button disabled={!isValid} type = "submit" theme = "primary" outline = {false} rounded = {false}>Get Started!</Button>
+            <Button
+              disabled={!isValid}
+              type="submit"
+              theme="primary"
+              outline={false}
+              rounded={false}
+            >
+              Get Started!
+            </Button>
           </div>
         </div>
       </form>

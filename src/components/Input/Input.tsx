@@ -3,16 +3,24 @@ import { IconType } from "react-icons";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  touched ?: boolean;
-  error ?: string;
-  Icon ?: IconType;
-  className ?: string;
+  touched?: boolean;
+  error?: string;
+  Icon?: IconType;
+  className?: string;
 }
 
-const Input: React.FC<Props> = ({ id, touched, placeholder, error, Icon, className, ...rest }) => {
+const Input: React.FC<Props> = ({
+  id,
+  touched,
+  placeholder,
+  error,
+  Icon,
+  className,
+  ...rest
+}) => {
   return (
     <div className={"flex pt-2 w-full " + className}>
-      {Icon && <Icon className="h-6 w-6 text-blue-600 fill-blue"/>}
+      {Icon && <Icon className="h-6 w-6 text-blue-600 fill-blue" />}
       <div className="flex flex-col w-full">
         <label htmlFor={id} className="sr-only">
           {placeholder}
@@ -30,7 +38,6 @@ const Input: React.FC<Props> = ({ id, touched, placeholder, error, Icon, classNa
   );
 };
 
-Input.defaultProps = { 
-};
+Input.defaultProps = {};
 
 export default React.memo(Input);

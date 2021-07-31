@@ -14,10 +14,10 @@ axios.interceptors.request.use(function (config) {
   };
 });
 
-axios.interceptors.response.use(undefined, function(error){
-    if(error.response.data.code === 9101){
-        localStorage.removeItem(LS_LOGIN_TOKEN);
-        window.location.href = "/login";
-    }
-    return Promise.reject(error);
-})
+axios.interceptors.response.use(undefined, function (error) {
+  if (error.response.data.code === 9101) {
+    localStorage.removeItem(LS_LOGIN_TOKEN);
+    window.location.href = "/login";
+  }
+  return Promise.reject(error);
+});
