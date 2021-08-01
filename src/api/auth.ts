@@ -29,3 +29,13 @@ export const logout = () => {
   localStorage.removeItem(LS_LOGIN_TOKEN);
   window.location.href = "/login";
 };
+
+interface meRespone{
+  data: User;
+}
+export const me =()=>{
+  const url = BASE_URL + "/me";
+  return axios.get<meRespone>(url).then((response)=>
+      response.data.data
+  )
+}
