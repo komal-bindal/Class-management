@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 interface Props {}
 const Recordings: React.FC<Props> = (props) => {
-  return <div>This is Recordings page.</div>;
+  return <div><Link to = "/dashboard">Dashboard</Link></div>
+  ;
 };
 Recordings.defaultProps = {};
 

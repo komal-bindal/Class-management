@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
@@ -10,6 +10,8 @@ import RecordingsPage from "./Recordings.page";
 interface Props {}
 
 const AppContainer: React.FC<Props> = (props) => {
+  console.log("Appcontainer rerender");
+  
   let title = "";
   if (window.location.pathname == "/dashboard") {
     title = "Dashboard";
