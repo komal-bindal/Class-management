@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchGroups } from "../api";
-import ListGroup from "../components/ListGroup/ListGroup";
+import { fetchGroups } from "../../api";
+import ListGroup from "../../components/ListGroup/ListGroup";
 
 interface Props {
   query?: string;

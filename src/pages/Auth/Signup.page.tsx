@@ -3,10 +3,10 @@ import { Link, useHistory } from "react-router-dom";
 import { ImSpinner } from "react-icons/im";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input/Input";
+import Input from "../../components/Input/Input";
 import { FiLock, FiUser } from "react-icons/fi";
 import { HiOutlineAtSymbol } from "react-icons/hi";
-import Button from "../components/Button/Button";
+import Button from "../../components/Button/Button";
 
 interface Props {}
 

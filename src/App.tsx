@@ -1,36 +1,47 @@
+import { Suspense } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { LS_LOGIN_TOKEN } from "./api";
-import AppContainerPage from "./pages/AppContainer.page";
-import AuthPage from "./pages/Auth.page";
+import AppContainerLazy from "./pages/AppContainer/AppContainer.lazy";
+import AuthLazy from "./pages/Auth/Auth.lazy";
 import NotFoundPage from "./pages/NotFound.page";
+import { ImSpinner } from "react-icons/im";
 function App() {
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
   return (
     <div>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact>
-            {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
-          </Route>
-          <Route path={["/login", "/signup"]} exact>
-            {token ? <Redirect to="/dashboard" /> : <AuthPage />}
-          </Route>
+      <Suspense
+        fallback={
+          <div className="flex flex-col justify-center items-center">
+            <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
+            <h1 className = "text-2xl">Loading....</h1>
+          </div>
+        }
+      >
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact>
+              {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
+            </Route>
+            <Route path={["/login", "/signup"]} exact>
+              {token ? <Redirect to="/dashboard" /> : <AuthLazy />}
+            </Route>
 
-          <Route
-            path={[
-              "/dashboard",
-              "/recordings",
-              "/batch/:batchNumber/lecture/:lectureNumber",
-            ]}
-            exact
-          >
-            {token ? <AppContainerPage /> : <Redirect to="/login" />}
-          </Route>
-          <Route>
-            <NotFoundPage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            <Route
+              path={[
+                "/dashboard",
+                "/recordings",
+                "/batch/:batchNumber/lecture/:lectureNumber",
+              ]}
+              exact
+            >
+              {token ? <AppContainerLazy /> : <Redirect to="/login" />}
+            </Route>
+            <Route>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </Suspense>
     </div>
   );
 }

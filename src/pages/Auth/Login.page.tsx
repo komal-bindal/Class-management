@@ -5,10 +5,10 @@ import { FiLock, FiUser } from "react-icons/fi";
 
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button";
-import { login, LS_LOGIN_TOKEN } from "../api";
-import ListGroup from "../components/ListGroup/ListGroup";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import { login, LS_LOGIN_TOKEN } from "../../api";
+import ListGroup from "../../components/ListGroup/ListGroup";
 
 interface Props {}
 

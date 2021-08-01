@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Route, Switch, useParams } from "react-router-dom";
-import Header from "../components/Header/Header";
-import Sidebar from "../components/Sidebar";
-import TopBar from "../components/TopBar/TopBar";
+import Header from "../../components/Header/Header";
+import Sidebar from "../../components/Sidebar";
+import TopBar from "../../components/TopBar/TopBar";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
