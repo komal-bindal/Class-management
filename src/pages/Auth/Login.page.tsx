@@ -2,15 +2,16 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ImSpinner } from "react-icons/im";
 import { FiLock, FiUser } from "react-icons/fi";
-
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { login, LS_LOGIN_TOKEN } from "../../api";
-import ListGroup from "../../components/ListGroup/ListGroup";
+import { login} from "../../api";
+import { User } from "../../models/User";
 
-interface Props {}
+interface Props {
+  onLogin: (u:User)=> void;
+}
 
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
@@ -28,9 +29,10 @@ const Login: React.FC<Props> = (props) => {
     },
     onSubmit: (data) => {
       login(data)
-        .then(() => {
+        .then((u) => {
           history.push("/dashboard");
-          console.log("hi");
+          console.log("user", u);
+          props.onLogin(u);
         })
         .catch((e) => {
           console.log("error", e);

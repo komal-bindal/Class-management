@@ -5,7 +5,13 @@ import AppContainerLazy from "./pages/AppContainer/AppContainer.lazy";
 import AuthLazy from "./pages/Auth/Auth.lazy";
 import NotFoundPage from "./pages/NotFound.page";
 import { ImSpinner } from "react-icons/im";
-function App() {
+import { User } from "./models/User";
+import { useState } from "react";
+
+interface Props {}
+
+const App: React.FC<Props> = () => {
+  const [user, setUser] = useState<User>();
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
   return (
     <div>
@@ -13,7 +19,7 @@ function App() {
         fallback={
           <div className="flex flex-col justify-center items-center">
             <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
-            <h1 className = "text-2xl">Loading....</h1>
+            <h1 className="text-2xl">Loading....</h1>
           </div>
         }
       >
@@ -23,7 +29,11 @@ function App() {
               {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
             </Route>
             <Route path={["/login", "/signup"]} exact>
-              {token ? <Redirect to="/dashboard" /> : <AuthLazy />}
+              {token ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <AuthLazy onLogin={(u) => setUser(u)} />
+              )}
             </Route>
 
             <Route
@@ -44,6 +54,6 @@ function App() {
       </Suspense>
     </div>
   );
-}
+};
 
 export default App;

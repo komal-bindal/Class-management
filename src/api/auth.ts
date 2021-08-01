@@ -21,6 +21,7 @@ export const login = (data: LoginRequest) => {
     console.log(response);
     localStorage.setItem(LS_LOGIN_TOKEN, response.data.token);
     console.log(response.data.token);
+    return response.data.user;
   });
 };
 
