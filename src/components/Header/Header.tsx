@@ -1,15 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import SettingsButton from "../Settings/SettingsButton";
 
 interface Props {
   title: string;
+  setSidebar: Dispatch<SetStateAction<boolean>>;
 }
 
-const Header: React.FC<Props> = ({ title }) => {
-  const [isSidebarOpen, setSideBarOpen] = useState(true);
+const Header: React.FC<Props> = ({ title, setSidebar }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
   const handleClick = () => {
-    setSideBarOpen(!isSidebarOpen);
+    setSidebar(!isSidebarOpen);
+    setSidebarOpen(!isSidebarOpen);
   };
   return (
     <div className="bg-gray-50 sticky h-14 top-14 py-2 z-40 flex items-center justify-between">

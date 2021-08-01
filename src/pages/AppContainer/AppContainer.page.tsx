@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { Route, Switch, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/SideBar/Sidebar";
@@ -10,24 +11,15 @@ import RecordingsPage from "./Recordings.page";
 interface Props {}
 
 const AppContainer: React.FC<Props> = (props) => {
-  console.log("Appcontainer rerender");
-  
-  let title = "";
-  if (window.location.pathname == "/dashboard") {
-    title = "Dashboard";
-  } else if (window.location.pathname == "/recordings") {
-    title = "Recordings";
-  } else if (
-    window.location.pathname == "/batch/:batchNumber/lecture/:lectureNumber"
-  ) {
-    title = "Recordings/Lecture";
-  }
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [title, setTitle] = useState("Dashboard");
+
   return (
     <div className="relative">
       <TopBar />
-      <Header title={title} />
+      <Header setSidebar={setSidebarOpen} title={title} />
       <div className="flex relative">
-        <Sidebar />
+        <Sidebar isSidebarOpen={isSidebarOpen} setTitle={setTitle} />
         <Switch>
           <Route path="/dashboard">
             <DashboardPage />
