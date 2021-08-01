@@ -3,17 +3,14 @@ import { Route, Switch } from "react-router-dom";
 import AuthHero from "../../components/AuthHero";
 import LoginPage from "./Login.page";
 import SignupPage from "./Signup.page";
-import { User } from "../../models/User";
 
-interface Props {
-  onLogin: (u: User) => void;
-}
+interface Props {}
 const Auth: React.FC<Props> = (props) => {
   return (
     <div className="flex justify-between">
       <Switch>
         <Route path="/login">
-          <LoginPage onLogin={props.onLogin} />
+          <LoginPage />
         </Route>
         <Route path="/signup">
           <SignupPage />

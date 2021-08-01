@@ -6,14 +6,14 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { login} from "../../api";
-import { User } from "../../models/User";
+import { login } from "../../api";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 
-interface Props {
-  onLogin: (u:User)=> void;
-}
+interface Props {}
 
 const Login: React.FC<Props> = (props) => {
+  const { setUser } = useContext(AppContext);
   const history = useHistory();
   const {
     isSubmitting,
@@ -32,7 +32,7 @@ const Login: React.FC<Props> = (props) => {
         .then((u) => {
           history.push("/dashboard");
           console.log("user", u);
-          props.onLogin(u);
+          setUser(u);
         })
         .catch((e) => {
           console.log("error", e);

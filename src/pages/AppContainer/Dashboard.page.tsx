@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { fetchGroups } from "../../api";
+import { AppContext } from "../../AppContext";
 import ListGroup from "../../components/ListGroup/ListGroup";
-import { User } from "../../models/User";
 
 interface Props {
   query?: string;
   status?: "all-groups" | "suggestions" | "invitations";
-  user:User;
 }
 
-const Dashboard: React.FC<Props> = ({ status, user }) => {
+const Dashboard: React.FC<Props> = ({ status }) => {
   const [groups, setGroups] = useState<any>([]);
   const [query, setQuery] = useState("");
+  const { user } = useContext(AppContext);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
@@ -23,7 +23,7 @@ const Dashboard: React.FC<Props> = ({ status, user }) => {
 
   return (
     <div className="">
-      <h1 className = " text-2xl px-10 pt-10">Hello.... {user.first_name}</h1>
+      <h1 className=" text-2xl px-10 pt-10">Hello.... {user!.first_name}</h1>
       <div className="h-10 px-10 py-10">
         <input
           className="border-2 p-1 outline-none "
