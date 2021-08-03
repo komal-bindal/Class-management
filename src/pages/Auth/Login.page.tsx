@@ -8,6 +8,7 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api";
 import { useDispatch } from "react-redux";
+import { meFetch } from "../../store";
 
 interface Props {}
 
@@ -31,7 +32,7 @@ const Login: React.FC<Props> = (props) => {
         .then((u) => {
           history.push("/dashboard");
           console.log("user", u);
-          dispatch({ type: "me/login", payload: u });
+          dispatch(meFetch(u));
         })
         .catch((e) => {
           console.log("error", e);

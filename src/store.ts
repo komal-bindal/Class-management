@@ -3,6 +3,10 @@ import { AnyAction, createStore, Reducer } from "redux";
 import { Group } from "./models/Group";
 import { User } from "./models/User";
 
+const ME_LOGIN = "me/login";
+const UI_SIDEBAR_TOGGLE = "ui_sidebar/toggle";
+const UI_HEADER_TITLE = "ui/headerTitle";
+
 export interface AppData {
   me?: User;
   groups: Group[];
@@ -23,11 +27,11 @@ const reducer: Reducer<AppData, AnyAction> = (
 ) => {
   let type = dispatchedAction.type;
   switch (type) {
-    case "me/login":
+    case ME_LOGIN:
       return { ...currentState, me: dispatchedAction.payload };
-    case "ui_sidebar/toggle":
+    case UI_SIDEBAR_TOGGLE:
       return { ...currentState, isSidebarOpen: !currentState.isSidebarOpen };
-    case "ui/headerTitle":
+    case UI_HEADER_TITLE:
       return { ...currentState, headerTitle: dispatchedAction.payload };
     default:
       return currentState;
@@ -35,5 +39,14 @@ const reducer: Reducer<AppData, AnyAction> = (
 };
 
 export const store = createStore(reducer);
+export const meFetch = (u: User) => {
+  return { type: ME_LOGIN, payload: u };
+};
+export const uiHeaderTitleChange = (title: string) => {
+  return { type: UI_HEADER_TITLE, payload: title };
+};
+export const uiSidebarToggle = () => {
+  return { type: UI_SIDEBAR_TOGGLE};
+};
 
 export const useAppSelector: TypedUseSelectorHook<AppData> = useSelector;

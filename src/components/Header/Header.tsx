@@ -1,22 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../store";
+import {
+  uiHeaderTitleChange,
+  uiSidebarToggle,
+  useAppSelector,
+} from "../../store";
 import SettingsButton from "../Settings/SettingsButton";
 
 interface Props {}
 
 const Header: React.FC<Props> = (props) => {
-  console.log("header rerender");
   const title = useAppSelector((state) => state.headerTitle);
   const dispatch = useDispatch();
   if (window.location.pathname == "/recordings") {
-    dispatch({ type: "ui/headerTitle", payload: "Recordings" });
+    dispatch(uiHeaderTitleChange("Recordings"));
   } else if (window.location.pathname == "/dashboard") {
-    dispatch({ type: "ui/headerTitle", payload: "Dashboard" });
+    dispatch(uiHeaderTitleChange("Dashboard"));
   }
 
   const handleClick = () => {
-    dispatch({ type: "ui_sidebar/toggle" });
+    dispatch(uiSidebarToggle());
   };
   return (
     <div className="bg-gray-50 sticky h-14 top-14 py-2 z-40 flex items-center justify-between">

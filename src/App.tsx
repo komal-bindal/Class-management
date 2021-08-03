@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { LS_LOGIN_TOKEN, me } from "./api";
 import AppContainerLazy from "./pages/AppContainer/AppContainer.lazy";
@@ -6,12 +6,11 @@ import AuthLazy from "./pages/Auth/Auth.lazy";
 import NotFoundPage from "./pages/NotFound.page";
 import { ImSpinner } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
-import { AppData } from "./store";
+import { AppData, meFetch } from "./store";
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  console.log("app rerender");
   const dispatch = useDispatch();
   const user = useSelector<AppData>((state) => state.me);
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
@@ -22,7 +21,7 @@ const App: React.FC<Props> = () => {
     }
     if (token) {
       me().then((u) => {
-        dispatch({ type: "me/login", payload: u });
+        dispatch(meFetch(u));
         console.log("user", u.first_name);
       });
     }
