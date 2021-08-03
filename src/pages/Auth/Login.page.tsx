@@ -7,13 +7,12 @@ import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api";
-import { useContext } from "react";
-import { AppContext } from "../../AppContext";
+import { useDispatch } from "react-redux";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-  const { setUser } = useContext(AppContext);
+  const dispatch = useDispatch();
   const history = useHistory();
   const {
     isSubmitting,
@@ -32,7 +31,7 @@ const Login: React.FC<Props> = (props) => {
         .then((u) => {
           history.push("/dashboard");
           console.log("user", u);
-          setUser(u);
+          dispatch({ type: "me/login", payload: u });
         })
         .catch((e) => {
           console.log("error", e);

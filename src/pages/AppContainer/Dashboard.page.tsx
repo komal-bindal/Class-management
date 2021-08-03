@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { fetchGroups } from "../../api";
-import { AppContext } from "../../AppContext";
 import ListGroup from "../../components/ListGroup/ListGroup";
+import { AppData, useAppSelector } from "../../store";
 
 interface Props {
   query?: string;
@@ -11,7 +11,7 @@ interface Props {
 const Dashboard: React.FC<Props> = ({ status }) => {
   const [groups, setGroups] = useState<any>([]);
   const [query, setQuery] = useState("");
-  const { user } = useContext(AppContext);
+  const user = useAppSelector((state) => state.me);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };

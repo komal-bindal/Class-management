@@ -1,17 +1,22 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../store";
 import SettingsButton from "../Settings/SettingsButton";
 
-interface Props {
-  title: string;
-  setSidebar: Dispatch<SetStateAction<boolean>>;
-}
+interface Props {}
 
-const Header: React.FC<Props> = ({ title, setSidebar }) => {
-  const [isSidebarOpen, setSidebarOpen] = useState(true);
+const Header: React.FC<Props> = (props) => {
+  console.log("header rerender");
+  const title = useAppSelector((state) => state.headerTitle);
+  const dispatch = useDispatch();
+  if (window.location.pathname == "/recordings") {
+    dispatch({ type: "ui/headerTitle", payload: "Recordings" });
+  } else if (window.location.pathname == "/dashboard") {
+    dispatch({ type: "ui/headerTitle", payload: "Dashboard" });
+  }
+
   const handleClick = () => {
-    setSidebar(!isSidebarOpen);
-    setSidebarOpen(!isSidebarOpen);
+    dispatch({ type: "ui_sidebar/toggle" });
   };
   return (
     <div className="bg-gray-50 sticky h-14 top-14 py-2 z-40 flex items-center justify-between">

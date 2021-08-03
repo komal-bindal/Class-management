@@ -1,28 +1,33 @@
-import React, { Dispatch, Fragment, SetStateAction } from "react";
+import React, { Fragment } from "react";
 import SidebarTab from "./SidebarTab";
 import { AiOutlineHome } from "react-icons/ai";
 import { logout } from "../../api";
 import { BiLogOut, BiVideoRecording } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { Transition } from "@headlessui/react";
-interface Props {
-  isSidebarOpen: boolean;
-  setTitle: Dispatch<SetStateAction<string>>;
-}
+import { useAppSelector } from "../../store";
+import { useDispatch } from "react-redux";
+interface Props {}
 const Sidebar: React.FC<Props> = (props) => {
+  console.log("sidebar rerender");
+  const dispatch = useDispatch();
+
+  const isSidebarOpen = useAppSelector((state) => state.isSidebarOpen);
+  console.log("sidebar", isSidebarOpen);
+
   const history = useHistory();
   const goToRecordings = () => {
     history.push("/recordings");
-    props.setTitle("Recordings");
+    dispatch({ type: "ui/headerTitle", payload: "Recordings" });
   };
   const goToDashboard = () => {
     history.push("/dashboard");
-    props.setTitle("Dashboard");
+    dispatch({ type: "ui/headerTitle", payload: "Dashboard" });
   };
   return (
     <div>
       <Transition
-        show={props.isSidebarOpen}
+        show={isSidebarOpen}
         as={Fragment}
         enter="transform transition-transform duration-1000 linear"
         enterFrom="-translate-x-full"
