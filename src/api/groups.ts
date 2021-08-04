@@ -15,5 +15,7 @@ interface GroupResponse {
 
 export const fetchGroups = (data?: GroupRequest) => {
   const url = BASE_URL + "/groups";
-  return axios.get<GroupResponse>(url, { params: data });
+  return axios
+    .get<GroupResponse>(url, { params: data })
+    .then((response) => response.data.data);
 };
