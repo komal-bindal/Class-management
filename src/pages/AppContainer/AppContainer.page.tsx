@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";

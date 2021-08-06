@@ -7,10 +7,10 @@ import { useHistory } from "react-router-dom";
 import { Transition } from "@headlessui/react";
 import { useAppSelector } from "../../store";
 import { headerActions } from "../../actions/header.actions";
+import { sidebarOpenSelector } from "../../selectors/ui.selectors";
 interface Props {}
 const Sidebar: React.FC<Props> = (props) => {
-
-  const isSidebarOpen = useAppSelector((state) => state.sidebar.isSidebarOpen);
+  const isSidebarOpen = useAppSelector((state) => sidebarOpenSelector(state));
 
   const history = useHistory();
   const goToRecordings = () => {

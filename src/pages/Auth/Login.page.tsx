@@ -7,8 +7,7 @@ import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api";
-import { useDispatch } from "react-redux";
-import { authActions} from "../../actions/auth.actions";
+import { authActions } from "../../actions/auth.actions";
 
 interface Props {}
 

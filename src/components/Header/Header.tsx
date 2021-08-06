@@ -2,19 +2,21 @@ import React from "react";
 import { useEffect } from "react";
 import { headerActions } from "../../actions/header.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
+import { headerTitleSelector } from "../../selectors/ui.selectors";
 import { useAppSelector } from "../../store";
 import SettingsButton from "../Settings/SettingsButton";
 
 interface Props {}
 
 const Header: React.FC<Props> = (props) => {
-  const title = useAppSelector((state) => state.header.title);
-  useEffect(()=>{
-  if (window.location.pathname == "/recordings") {
-    headerActions.uiHeaderTitleChangeAction("Recordings");
-  } else if (window.location.pathname == "/dashboard") {
-    headerActions.uiHeaderTitleChangeAction("Dashboard");
-  }},[])
+  const title = useAppSelector((state) => headerTitleSelector(state));
+  useEffect(() => {
+    if (window.location.pathname === "/recordings") {
+      headerActions.uiHeaderTitleChangeAction("Recordings");
+    } else if (window.location.pathname === "/dashboard") {
+      headerActions.uiHeaderTitleChangeAction("Dashboard");
+    }
+  }, []);
 
   const handleClick = () => {
     sidebarActions.uiSidebarToggleAction();

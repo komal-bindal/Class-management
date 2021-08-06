@@ -1,9 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import { groupActions } from "../../actions/groups.actions";
 import { fetchGroups } from "../../api";
 import ListGroup from "../../components/ListGroup/ListGroup";
-import { User } from "../../models/User";
+import {
+  groupQuerySelector,
+  groupsRelatedToQuerySelector,
+} from "../../selectors/groups.selectors";
+import { authUserSelector } from "../../selectors/users.selectors";
 import { useAppSelector } from "../../store";
 
 interface Props {
@@ -12,31 +15,21 @@ interface Props {
 }
 
 const Dashboard: React.FC<Props> = ({ status }) => {
-  const dispatch = useDispatch();
+  const query = useAppSelector((state) => groupQuerySelector(state));
 
-  const query = useAppSelector((state) => state.groups.query);
+  const user = useAppSelector((state) => authUserSelector(state));
 
-  const user = useAppSelector((state) => {
-    const id = state.auth.id as number;
-    const u = state.users.byId[id] as User;
-    return u;
-  });
-
-  const groups = useAppSelector((state) => {
-    const groupIds = state.groups.groupQueryMap[state.groups.query] || [];
-    const groups = groupIds.map((id) => state.groups.byId[id]);
-    return groups;
-  });
+  const groups = useAppSelector((state) => groupsRelatedToQuerySelector(state));
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     groupActions.groupQueryAction(event.target.value);
   };
+
   useEffect(() => {
     fetchGroups({ status, query }).then((groups) => {
       groupActions.groupQueryCompletedAction(groups, query);
     });
-  }, [query]);
-  console.log("Groups", groups);
+  }, [query]); //eslint-disable-line
 
   return (
     <div className="">

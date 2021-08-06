@@ -45,7 +45,7 @@ const TopBar: React.FC<Props> = () => {
       <div className="flex text-white px-5 items-center">
         <FiMail className="h-5 w-5" />
         <BsBell className="h-5 w-5 ml-5"></BsBell>
-        <img src={dummyAvatar} className="h-7 w-7 ml-5 rounded-md" />
+        <img src={dummyAvatar} alt="profile" className="h-7 w-7 ml-5 rounded-md" />
       </div>
     </div>
   );

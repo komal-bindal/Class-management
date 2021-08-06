@@ -5,31 +5,24 @@ import AppContainerLazy from "./pages/AppContainer/AppContainer.lazy";
 import AuthLazy from "./pages/Auth/Auth.lazy";
 import NotFoundPage from "./pages/NotFound.page";
 import { ImSpinner } from "react-icons/im";
-import { useDispatch } from "react-redux";
 import { authActions } from "./actions/auth.actions";
 import { useAppSelector } from "./store";
+import { authUserSelector } from "./selectors/users.selectors";
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  console.log("app");
-
-  const dispatch = useDispatch();
-
-  const user = useAppSelector((state) => {
-    return state.auth.id && state.users.byId[state.auth.id];
-  });
+  const user = useAppSelector((state) => authUserSelector(state));
   const token = localStorage.getItem(LS_LOGIN_TOKEN);
 
   useEffect(() => {
     if (!token || user) {
       return;
     }
-
     me().then((u) => {
       authActions.meFetchAction(u);
     });
-  }, []);
+  }, []); //eslint-disable-line
 
   if (token && !user) {
     return (

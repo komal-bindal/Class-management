@@ -12,7 +12,7 @@ const ListGroup: React.FC<Props> = ({ image, name, title }) => {
 
   return (
     <div className="flex items-center px-6 py-3 m-4 border-2 roundedd-xl">
-      <img src={image} className="h-10 w-10" />
+      <img src={image} alt="" className="h-10 w-10" />
       <div className="flex flex-col pl-6 ">
         <h1>{name}</h1>
         <h3>{title}</h3>
