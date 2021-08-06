@@ -6,7 +6,7 @@ import AuthLazy from "./pages/Auth/Auth.lazy";
 import NotFoundPage from "./pages/NotFound.page";
 import { ImSpinner } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { meFetchAction } from "./actions/auth.actions";
+import { authActions } from "./actions/auth.actions";
 import { useAppSelector } from "./store";
 
 interface Props {}
@@ -27,7 +27,7 @@ const App: React.FC<Props> = () => {
     }
 
     me().then((u) => {
-      dispatch(meFetchAction(u));
+      authActions.meFetchAction(u);
     });
   }, []);
 

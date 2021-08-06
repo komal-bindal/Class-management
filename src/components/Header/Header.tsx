@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { uiHeaderTitleChangeAction } from "../../actions/header.actions";
-import { uiSidebarToggleAction } from "../../actions/sidebar.actions";
+import { useEffect } from "react";
+import { headerActions } from "../../actions/header.actions";
+import { sidebarActions } from "../../actions/sidebar.actions";
 import { useAppSelector } from "../../store";
 import SettingsButton from "../Settings/SettingsButton";
 
@@ -9,15 +9,15 @@ interface Props {}
 
 const Header: React.FC<Props> = (props) => {
   const title = useAppSelector((state) => state.header.title);
-  const dispatch = useDispatch();
+  useEffect(()=>{
   if (window.location.pathname == "/recordings") {
-    dispatch(uiHeaderTitleChangeAction("Recordings"));
+    headerActions.uiHeaderTitleChangeAction("Recordings");
   } else if (window.location.pathname == "/dashboard") {
-    dispatch(uiHeaderTitleChangeAction("Dashboard"));
-  }
+    headerActions.uiHeaderTitleChangeAction("Dashboard");
+  }},[])
 
   const handleClick = () => {
-    dispatch(uiSidebarToggleAction());
+    sidebarActions.uiSidebarToggleAction();
   };
   return (
     <div className="bg-gray-50 sticky h-14 top-14 py-2 z-40 flex items-center justify-between">

@@ -6,22 +6,20 @@ import { BiLogOut, BiVideoRecording } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { Transition } from "@headlessui/react";
 import { useAppSelector } from "../../store";
-import { useDispatch } from "react-redux";
-import { uiHeaderTitleChangeAction } from "../../actions/header.actions";
+import { headerActions } from "../../actions/header.actions";
 interface Props {}
 const Sidebar: React.FC<Props> = (props) => {
-  const dispatch = useDispatch();
 
   const isSidebarOpen = useAppSelector((state) => state.sidebar.isSidebarOpen);
 
   const history = useHistory();
   const goToRecordings = () => {
     history.push("/recordings");
-    dispatch(uiHeaderTitleChangeAction("Recordings"));
+    headerActions.uiHeaderTitleChangeAction("Recordings");
   };
   const goToDashboard = () => {
     history.push("/dashboard");
-    dispatch(uiHeaderTitleChangeAction("Dashboard"));
+    headerActions.uiHeaderTitleChangeAction("Dashboard");
   };
   return (
     <div>

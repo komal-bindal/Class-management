@@ -8,12 +8,11 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api";
 import { useDispatch } from "react-redux";
-import { meLoginAction } from "../../actions/auth.actions";
+import { authActions} from "../../actions/auth.actions";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const {
     isSubmitting,
@@ -32,7 +31,7 @@ const Login: React.FC<Props> = (props) => {
         .then((u) => {
           history.push("/dashboard");
           console.log("user", u);
-          dispatch(meLoginAction(u));
+          authActions.meLoginAction(u);
         })
         .catch((e) => {
           console.log("error", e);

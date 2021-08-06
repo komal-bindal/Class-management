@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useDispatch } from "react-redux";
-import {
-  groupQueryAction,
-  groupQueryCompletedAction,
-} from "../../actions/groups.actions";
+import { groupActions } from "../../actions/groups.actions";
 import { fetchGroups } from "../../api";
 import ListGroup from "../../components/ListGroup/ListGroup";
 import { User } from "../../models/User";
@@ -32,11 +29,11 @@ const Dashboard: React.FC<Props> = ({ status }) => {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(groupQueryAction(event.target.value));
+    groupActions.groupQueryAction(event.target.value);
   };
   useEffect(() => {
     fetchGroups({ status, query }).then((groups) => {
-      dispatch(groupQueryCompletedAction(groups, query));
+      groupActions.groupQueryCompletedAction(groups, query);
     });
   }, [query]);
   console.log("Groups", groups);

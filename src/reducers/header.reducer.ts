@@ -1,5 +1,5 @@
 import { AnyAction, Reducer } from "redux";
-import { UI_HEADER_TITLE } from "../actions/header.actions";
+import { UI_HEADER_TITLE } from "../actions/actionConstants";
 
 export interface HeaderState {
   title: string;

@@ -1,5 +1,10 @@
-export const UI_HEADER_TITLE = "ui/headerTitle";
+import { bindActionCreators } from "redux";
+import { store } from "../store";
+import { UI_HEADER_TITLE } from "./actionConstants";
 
-export const uiHeaderTitleChangeAction = (title: string) => {
+
+const uiHeaderTitleChangeAction = (title: string) => {
   return { type: UI_HEADER_TITLE, payload: title };
 };
+
+export const headerActions = bindActionCreators({uiHeaderTitleChangeAction}, store.dispatch)
