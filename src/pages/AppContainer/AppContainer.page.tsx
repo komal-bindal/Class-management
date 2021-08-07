@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";
 import DashboardPage from "./Dashboard.page";
+import GroupsPage from "./Groups.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
 
@@ -22,6 +23,9 @@ const AppContainer: React.FC<Props> = (props) => {
           </Route>
           <Route path="/recordings">
             <RecordingsPage />
+          </Route>
+          <Route path="/groups">
+            <GroupsPage />
           </Route>
           <Route path="/batch/:batchNumber/lecture/:lectureNumber">
             <LecturePage />

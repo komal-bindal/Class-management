@@ -26,6 +26,7 @@ const Sidebar: React.FC<Props> = (props) => {
     headerActions.uiHeaderTitleChangeAction("Dashboard");
   };
   const goToGroups = () => {
+    history.push("/groups");
     headerActions.uiHeaderTitleChangeAction("Groups");
   };
   const headerTitle = useAppSelector((state) => headerTitleSelector(state));
@@ -43,7 +44,7 @@ const Sidebar: React.FC<Props> = (props) => {
         leaveTo="-translate-x-full "
       >
         <div
-          className=" w-52 z-30  bg-gray-200 flex sticky top-28  flex-col p-3 "
+          className=" w-52 z-30  bg-gray-100 border-r-2  flex sticky top-28  flex-col p-3 "
           style={{ height: "calc(100vh - 112px)" }}
         >
           <SidebarTab
