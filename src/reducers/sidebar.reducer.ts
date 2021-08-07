@@ -6,7 +6,7 @@ export interface SidebarState {
 }
 
 const initialState: SidebarState = {
-  isSidebarOpen: true,
+  isSidebarOpen: false,
 };
 export const sidebarReducer: Reducer<SidebarState, AnyAction> = (
   currentState = initialState,
