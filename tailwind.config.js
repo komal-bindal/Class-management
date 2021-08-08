@@ -30,6 +30,7 @@ module.exports = {
     extend: {
       translate: ["active", "group-hover"],
       transform: ["hover", "focus"],
+      borderWidth: ['hover', 'focus'],
     },
   },
   plugins: [],

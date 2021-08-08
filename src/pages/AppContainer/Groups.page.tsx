@@ -44,6 +44,7 @@ const Groups: React.FC<Props> = ({ status }) => {
           <ListGroup
           className = {(count = !count)? "bg-white": "bg-gray-300"}
             name={group.name}
+            id = {group.id}
             title={group.description}
             image={group.group_image_url}
           ></ListGroup>

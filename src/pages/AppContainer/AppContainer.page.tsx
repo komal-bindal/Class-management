@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/SideBar/Sidebar";
 import TopBar from "../../components/TopBar/TopBar";
 import DashboardPage from "./Dashboard.page";
+import GroupDetailsPage from "./GroupDetails.page";
 import GroupsPage from "./Groups.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
@@ -12,7 +13,7 @@ interface Props {}
 
 const AppContainer: React.FC<Props> = (props) => {
   return (
-    <div className="relative">
+    <div className="relative bg-gray-100 ">
       <TopBar />
       <Header />
       <div className="flex relative">
@@ -24,8 +25,11 @@ const AppContainer: React.FC<Props> = (props) => {
           <Route path="/recordings">
             <RecordingsPage />
           </Route>
-          <Route path="/groups">
+          <Route path="/groups" exact>
             <GroupsPage />
+          </Route>
+          <Route path="/groups/id/:id">
+            <GroupDetailsPage></GroupDetailsPage>
           </Route>
           <Route path="/batch/:batchNumber/lecture/:lectureNumber">
             <LecturePage />
