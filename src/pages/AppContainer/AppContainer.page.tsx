@@ -7,13 +7,14 @@ import DashboardPage from "./Dashboard.page";
 import GroupDetailsPage from "./GroupDetails.page";
 import GroupsPage from "./Groups.page";
 import LecturePage from "./Lecture.page";
+import ProfilePage from "./Profile.page";
 import RecordingsPage from "./Recordings.page";
 
 interface Props {}
 
 const AppContainer: React.FC<Props> = (props) => {
   return (
-    <div className="relative bg-gray-100 ">
+    <div className="relative bg-gray-100 min-h-screen ">
       <TopBar />
       <Header />
       <div className="flex relative">
@@ -33,6 +34,9 @@ const AppContainer: React.FC<Props> = (props) => {
           </Route>
           <Route path="/batch/:batchNumber/lecture/:lectureNumber">
             <LecturePage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage></ProfilePage>
           </Route>
         </Switch>
       </div>

@@ -30,7 +30,7 @@ const Groups: React.FC<Props> = ({ status }) => {
   let count = true;
 
   return (
-    <div className="p-10 flex flex-col items-center justify-center w-full bg-gray-100">
+    <div className="p-10 flex flex-col items-center justify-center w-full bg-gray-100 min-h-screen" >
       <div className="h-10 ">
         <input
           className="border-2 py-1 px-3 outline-none "
