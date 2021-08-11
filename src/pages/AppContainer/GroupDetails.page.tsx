@@ -12,7 +12,6 @@ const GroupDetails: React.FC<Props> = (props) => {
   return (
     <div
       className="w-full flex items-center justify-center bg-gray-100"
-      style={{ height: "calc(100vh - 112px)" }}
     >
       <div className="flex min-w-min max-w-max p-4 flex-col  border border-gray-700 shadow-xl bg-white ">
         <div className="flex items-center mb-3">

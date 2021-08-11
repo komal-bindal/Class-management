@@ -1,10 +1,21 @@
-import React from "react";
+import { Transition } from "@headlessui/react";
+import React, { Fragment } from "react";
+import { useState } from "react";
 import { BsBell } from "react-icons/bs";
 import { FiMail, FiSearch } from "react-icons/fi";
+import { Link, useHistory } from "react-router-dom";
+import { headerActions } from "../../actions/header.actions";
 import dummyAvatar from "../../images/dummy-avatar.jpg";
+import SettingsMenu from "../Settings/SettingsMenu";
 interface Props {}
 
 const TopBar: React.FC<Props> = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
+  const handleClick = () => {
+    history.push("/profile");
+    headerActions.uiHeaderTitleChangeAction("Profile")
+  };
   return (
     <div className="bg-dark-blue h-14 py-1 flex justify-between sticky z-20 top-0 ">
       <div className="flex justify-between">
@@ -45,8 +56,36 @@ const TopBar: React.FC<Props> = () => {
       <div className="flex text-white px-5 items-center">
         <FiMail className="h-5 w-5" />
         <BsBell className="h-5 w-5 ml-5"></BsBell>
-        <img src={dummyAvatar} alt="profile" className="h-7 w-7 ml-5 rounded-md" />
+        <button onClick={() => setIsOpen(!isOpen)}>
+          <img
+            src={dummyAvatar}
+            alt="profile"
+            className="h-7 w-7 ml-5 rounded-md"
+          />
+        </button>
       </div>
+      <Transition
+        show={isOpen}
+        as={Fragment}
+        enter="transform transition duration-100 ease-in-out"
+        enterFrom="opacity-0 "
+        enterTo="opacity-100 "
+        leave="transform duration-100 transition ease-in-out"
+        leaveFrom="opacity-100 "
+        leaveTo="opacity-0 "
+      >
+        <div className="absolute top-14  right-5 flex flex-col w-32  border  rounded-md bg-white shadow-md text-gray-500 py-2 ">
+          <button
+            onClick={handleClick}
+            className="px-4 py-2 w-full hover:text-blue-400 text-left  hover:bg-gray-100"
+          >
+            Profile
+          </button>
+          <button className="px-4 py-2 w-full hover:text-blue-400 text-left  hover:bg-gray-100">
+            Inbox
+          </button>
+        </div>
+      </Transition>{" "}
     </div>
   );
 };

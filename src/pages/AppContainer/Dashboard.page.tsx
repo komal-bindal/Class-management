@@ -9,7 +9,7 @@ const Dashboard: React.FC<Props> = () => {
 
   return (
     <div
-      className="p-10 bg-gray-100 w-full min-h-screen"
+      className="p-10 bg-gray-100 w-full"
     >
       <h1 className=" text-2xl ">Hello... {user!.first_name}</h1>
       <h3>This is Dashboard</h3>

@@ -22,7 +22,7 @@ const Header: React.FC<Props> = (props) => {
     sidebarActions.uiSidebarToggleAction();
   };
   return (
-    <div className="bg-gray-50 sticky h-14 top-14 py-2 z-40 flex items-center justify-between">
+    <div className="bg-gray-50 sticky h-14 top-14 py-2 z-10 flex items-center justify-between">
       <div className="flex">
         <button className="pl-8 pr-6" onClick={handleClick}>
           <svg viewBox="0 0 100 80" width="20" height="20">

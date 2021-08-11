@@ -30,7 +30,7 @@ const Groups: React.FC<Props> = ({ status }) => {
   let count = true;
 
   return (
-    <div className="p-10 flex flex-col items-center justify-center w-full bg-gray-100 min-h-screen" >
+    <div className="p-10 flex flex-col items-center justify-center w-full bg-gray-100 ">
       <div className="h-10 ">
         <input
           className="border-2 py-1 px-3 outline-none "
@@ -42,9 +42,9 @@ const Groups: React.FC<Props> = ({ status }) => {
       <div className="  rounded-md max-w-3xl mx-auto my-6">
         {groups.map((group: any) => (
           <ListGroup
-          className = {(count = !count)? "bg-white": "bg-gray-300"}
+            className={(count = !count) ? "bg-white" : "bg-gray-300"}
             name={group.name}
-            id = {group.id}
+            id={group.id}
             title={group.description}
             image={group.group_image_url}
           ></ListGroup>
