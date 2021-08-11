@@ -7,13 +7,13 @@ import { useAppSelector } from "../../store";
 interface Props {}
 const Profile: React.FC<Props> = () => {
   const user = useAppSelector(authUserSelector);
-  const firstName = user?.first_name;
   return (
     <div className="bg-white m-5 w-full p-5">
       <h1 className="text-xl mb-5 font-bold">General Information</h1>
       <div className="flex flex-col lg:flex-row">
         <img
           className="h-20 w-20 rounded-full mr-8"
+          alt = "profile"
           src="https://www.pngitem.com/pimgs/m/537-5372558_flat-man-icon-png-transparent-png.png"
         ></img>
         <div className="flex flex-col mr-10 max-w-max ">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { authUserSelector } from "../../selectors/users.selectors";
 import { useAppSelector } from "../../store";
 

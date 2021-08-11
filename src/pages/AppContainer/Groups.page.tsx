@@ -42,7 +42,7 @@ const Groups: React.FC<Props> = ({ status }) => {
       <div className="  rounded-md max-w-3xl mx-auto my-6">
         {groups.map((group: any) => (
           <ListGroup
-            className={(count = !count) ? "bg-white" : "bg-gray-300"}
+            className={(count = !count) ? "bg-white" : "bg-gray-300"} //eslint-disable-line
             name={group.name}
             id={group.id}
             title={group.description}

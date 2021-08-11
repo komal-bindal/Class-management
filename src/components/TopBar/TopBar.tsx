@@ -3,10 +3,9 @@ import React, { Fragment } from "react";
 import { useState } from "react";
 import { BsBell } from "react-icons/bs";
 import { FiMail, FiSearch } from "react-icons/fi";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { headerActions } from "../../actions/header.actions";
 import dummyAvatar from "../../images/dummy-avatar.jpg";
-import SettingsMenu from "../Settings/SettingsMenu";
 interface Props {}
 
 const TopBar: React.FC<Props> = () => {
@@ -14,7 +13,7 @@ const TopBar: React.FC<Props> = () => {
   const history = useHistory();
   const handleClick = () => {
     history.push("/profile");
-    headerActions.uiHeaderTitleChangeAction("Profile")
+    headerActions.uiHeaderTitleChangeAction("Profile");
   };
   return (
     <div className="bg-dark-blue h-14 py-1 flex justify-between sticky z-20 top-0 ">
