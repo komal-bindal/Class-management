@@ -1,12 +1,9 @@
 import { AnyAction, Reducer } from "redux";
 import { ME_FETCH, ME_LOGIN } from "../actions/actionConstants";
 import { User } from "../models/User";
+import { addOne, EntityState } from "./entity.reducer";
 
-export interface UsersState {
-  byId: {
-    [id: number]: User;
-  };
-}
+export interface UsersState extends EntityState<User> {}
 
 export const initialState: UsersState = {
   byId: {},
@@ -19,10 +16,11 @@ export const userReducer: Reducer<UsersState, AnyAction> = (
   switch (dispatchedAction.type) {
     case ME_FETCH:
     case ME_LOGIN:
-      return {
-        ...currentState,
-        byId: { [dispatchedAction.payload.id]: dispatchedAction.payload },
-      };
+      return addOne(currentState, dispatchedAction.payload);
+    //{
+    //...currentState,
+    //byId: { [dispatchedAction.payload.id]: dispatchedAction.payload },
+    //};
     default:
       return currentState;
   }
