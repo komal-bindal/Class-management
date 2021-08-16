@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { groupActions } from "../../actions/groups.actions";
-import { fetchGroups } from "../../api";
+import React from "react";
+import { ImSpinner } from "react-icons/im";
 import ListGroup from "../../components/ListGroup/ListGroup";
+import { fetchGroups } from "../../middlewares/groups.middleware";
 import {
+  groupCurrentQueryLoadingSelector,
   groupQuerySelector,
   groupsRelatedToQuerySelector,
 } from "../../selectors/groups.selectors";
@@ -19,19 +20,18 @@ const Groups: React.FC<Props> = ({ status }) => {
   const groups = useAppSelector((state) => groupsRelatedToQuerySelector(state));
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    groupActions.groupQueryAction(event.target.value);
+    fetchGroups({ query: event.target.value, status });
   };
 
-  useEffect(() => {
-    fetchGroups({ status, query }).then((groups) => {
-      groupActions.groupQueryCompletedAction(groups, query);
-    });
-  }, [query]); //eslint-disable-line
+  const loading = useAppSelector((state) =>
+    groupCurrentQueryLoadingSelector(state)
+  );
+
   let count = true;
 
   return (
-    <div className="p-10 flex flex-col items-center justify-center w-full bg-gray-100 ">
-      <div className="h-10 ">
+    <div className="h-10 w-full  ">
+      <div className="p-10  w-full bg-gray-100 flex justify-center items-center">
         <input
           className="border-2 py-1 px-3 outline-none "
           onChange={handleChange}
@@ -40,15 +40,26 @@ const Groups: React.FC<Props> = ({ status }) => {
         ></input>
       </div>
       <div className="  rounded-md max-w-3xl mx-auto my-6">
-        {groups.map((group: any) => (
-          <ListGroup
-            className={(count = !count) ? "bg-white" : "bg-gray-300"} //eslint-disable-line
-            name={group.name}
-            id={group.id}
-            title={group.description}
-            image={group.group_image_url}
-          ></ListGroup>
-        ))}
+        {!loading &&
+          groups.length > 0 &&
+          groups.map((group: any) => (
+            <ListGroup
+              className={(count = !count) ? "bg-white" : "bg-gray-300"} //eslint-disable-line
+              name={group.name}
+              id={group.id}
+              title={group.description}
+              image={group.group_image_url}
+            ></ListGroup>
+          ))}
+        {loading === false && groups.length === 0 && (
+          <h1 className="text-2xl text-center">Oops!! No group found.</h1>
+        )}
+        {loading && (
+          <div className="flex flex-col justify-center items-center">
+            <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
+            <h1 className="text-2xl">Loading....</h1>
+          </div>
+        )}
       </div>
     </div>
   );
