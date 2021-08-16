@@ -40,8 +40,13 @@ const Groups: React.FC<Props> = ({ status }) => {
         ></input>
       </div>
       <div className="  rounded-md max-w-3xl mx-auto my-6">
-        {!loading &&
-          groups.length > 0 &&
+        {loading && (
+          <div className="flex flex-col justify-center items-center">
+            <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
+            <h1 className="text-2xl">Loading....</h1>
+          </div>
+        )}
+        {groups.length > 0 &&
           groups.map((group: any) => (
             <ListGroup
               className={(count = !count) ? "bg-white" : "bg-gray-300"} //eslint-disable-line
@@ -53,12 +58,6 @@ const Groups: React.FC<Props> = ({ status }) => {
           ))}
         {loading === false && groups.length === 0 && (
           <h1 className="text-2xl text-center">Oops!! No group found.</h1>
-        )}
-        {loading && (
-          <div className="flex flex-col justify-center items-center">
-            <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
-            <h1 className="text-2xl">Loading....</h1>
-          </div>
         )}
       </div>
     </div>
