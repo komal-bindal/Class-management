@@ -3,7 +3,7 @@ import { ImSpinner } from "react-icons/im";
 import ListGroup from "../../components/ListGroup/ListGroup";
 import { fetchGroups } from "../../middlewares/groups.middleware";
 import {
-  groupCurrentQueryLoadingSelector,
+  groupQueryLoadingSelector,
   groupQuerySelector,
   groupsRelatedToQuerySelector,
 } from "../../selectors/groups.selectors";
@@ -23,9 +23,7 @@ const Groups: React.FC<Props> = ({ status }) => {
     fetchGroups({ query: event.target.value, status });
   };
 
-  const loading = useAppSelector((state) =>
-    groupCurrentQueryLoadingSelector(state)
-  );
+  const loading = useAppSelector((state) => groupQueryLoadingSelector(state));
 
   let count = true;
 
@@ -56,7 +54,7 @@ const Groups: React.FC<Props> = ({ status }) => {
               image={group.group_image_url}
             ></ListGroup>
           ))}
-        {loading === false && groups.length === 0 && (
+        {loading === false && groups.length === 0 && query !== "" && (
           <h1 className="text-2xl text-center">Oops!! No group found.</h1>
         )}
       </div>
