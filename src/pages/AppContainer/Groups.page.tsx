@@ -1,7 +1,9 @@
 import React from "react";
 import { ImSpinner } from "react-icons/im";
+import { useDispatch } from "react-redux";
+import { groupQueryAction } from "../../actions/groups.actions";
 import ListGroup from "../../components/ListGroup/ListGroup";
-import { fetchGroups } from "../../middlewares/groups.middleware";
+
 import {
   groupQueryLoadingSelector,
   groupQuerySelector,
@@ -18,9 +20,9 @@ const Groups: React.FC<Props> = ({ status }) => {
   const query = useAppSelector((state) => groupQuerySelector(state));
 
   const groups = useAppSelector((state) => groupsRelatedToQuerySelector(state));
-
+  const dispatch = useDispatch();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    fetchGroups({ query: event.target.value, status });
+    dispatch(groupQueryAction(event.target.value, true));
   };
 
   const loading = useAppSelector((state) => groupQueryLoadingSelector(state));
