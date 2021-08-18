@@ -15,6 +15,8 @@ const Header: React.FC<Props> = (props) => {
       headerActions.uiHeaderTitleChangeAction("Recordings");
     } else if (window.location.pathname === "/dashboard") {
       headerActions.uiHeaderTitleChangeAction("Dashboard");
+    }else if (window.location.pathname === "/groups") {
+      headerActions.uiHeaderTitleChangeAction("Groups");
     }
   }, []);
 
