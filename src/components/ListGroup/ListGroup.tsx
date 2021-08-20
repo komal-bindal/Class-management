@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { groupFetchOneAction } from "../../actions/groups.actions";
 interface Props {
   image?: string;
   name?: string;
@@ -8,6 +10,8 @@ interface Props {
   id: number;
 }
 const ListGroup: React.FC<Props> = ({ image, name, title, className, id }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   if (image === null || image === undefined) {
     image =
       "https://www.pngitem.com/pimgs/m/537-5372558_flat-man-icon-png-transparent-png.png";
@@ -22,9 +26,15 @@ const ListGroup: React.FC<Props> = ({ image, name, title, className, id }) => {
     >
       <img src={image} alt="" className="h-10 w-10" />
       <div className="flex flex-col pl-6 ">
-        <Link className="hover:border-b-2 hover:border-black w-max " to={link}>
+        <span
+          className="hover:border-b-2  hover:border-black w-max "
+          onClick={() => {
+            history.push(link);
+            dispatch(groupFetchOneAction(id));
+          }}
+        >
           <h1>{name}</h1>
-        </Link>
+        </span>
         <h3>{title}</h3>
       </div>
     </div>

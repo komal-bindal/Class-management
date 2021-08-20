@@ -8,7 +8,7 @@ export const groupQuerySelector = createSelector(
 
 export const groupQueryLoadingSelector = createSelector(
   [groupsSelector],
-  (groupsState) => groupsState.loading
+  (groupsState) => groupsState.loadingList
 );
 
 export const groupQueryMapSelector = createSelector(
@@ -19,6 +19,28 @@ export const groupQueryMapSelector = createSelector(
 export const groupByIdSelector = createSelector(
   [groupsSelector],
   (groupsState) => groupsState.byId
+);
+
+export const groupSelectedIdSelector = createSelector(
+  [groupsSelector],
+  (groupState) => groupState.selectedId
+);
+
+export const groupSelectedIdLoadingSelector = createSelector(
+  [groupsSelector],
+  (groupState) => groupState.selectedIdLoading
+);
+
+export const groupSelectedIdErrorSelector = createSelector(
+  [groupsSelector],
+  (groupState) => groupState.selectedIdError
+);
+
+export const selectedGroupSelector = createSelector(
+  [groupSelectedIdSelector, groupByIdSelector],
+  (selectedId, byId) => {
+    return byId[selectedId!];
+  }
 );
 
 export const groupsRelatedToQuerySelector = createSelector(
