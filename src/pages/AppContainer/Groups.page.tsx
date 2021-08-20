@@ -30,8 +30,8 @@ const Groups: React.FC<Props> = ({ status }) => {
   let count = true;
 
   return (
-    <div className="h-10 w-full  ">
-      <div className="p-10  w-full bg-gray-100 flex justify-center items-center">
+    <div className="p-10 flex flex-col items-center  w-full bg-gray-100 ">
+      <div className="h-10 ">
         <input
           className="border-2 py-1 px-3 outline-none "
           onChange={handleChange}
@@ -42,8 +42,8 @@ const Groups: React.FC<Props> = ({ status }) => {
       <div className="  rounded-md max-w-3xl mx-auto my-6">
         {loading && (
           <div className="flex flex-col justify-center items-center">
-            <ImSpinner className="animate-spin h-14 w-14"></ImSpinner>
-            <h1 className="text-2xl">Loading....</h1>
+            <ImSpinner className="animate-spin h-7 w-7"></ImSpinner>
+            <h1 className="text-xl">Loading....</h1>
           </div>
         )}
         {groups.length > 0 &&

@@ -20,19 +20,17 @@ const ListGroup: React.FC<Props> = ({ image, name, title, className, id }) => {
   return (
     <div
       className={
-        "flex items-center px-6 py-3 m-4 border-2 rounded-xl shadow-lg " +
+        "flex items-center px-6 py-3 m-4 border-2 rounded-xl shadow-lg hover:bg-gray-400 border-gray-500 cursor-pointer " +
         className
       }
+      onClick={() => {
+        history.push(link);
+        dispatch(groupFetchOneAction(id));
+      }}
     >
       <img src={image} alt="" className="h-10 w-10" />
       <div className="flex flex-col pl-6 ">
-        <span
-          className="hover:border-b-2  hover:border-black w-max "
-          onClick={() => {
-            history.push(link);
-            dispatch(groupFetchOneAction(id));
-          }}
-        >
+        <span className=" w-max ">
           <h1>{name}</h1>
         </span>
         <h3>{title}</h3>
