@@ -56,6 +56,7 @@ export const groupsReducer: Reducer<GroupsState, AnyAction> = (
         ...currentState,
         selectedId: dispatchedAction.payload.id,
         selectedIdLoading: dispatchedAction.payload.selectedIdLoading,
+        selectedIdError: undefined,
       };
     case GROUP_FETCH_ONE_COMPLETED:
       return addOne(
