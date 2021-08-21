@@ -59,7 +59,9 @@ const App: React.FC<Props> = () => {
                 "/batch/:batchNumber/lecture/:lectureNumber",
                 "/groups",
                 "/groups/id/:id",
-                "/profile"
+                "/profile",
+                "/users",
+                "/users/id/:id"
               ]}
               exact
             >

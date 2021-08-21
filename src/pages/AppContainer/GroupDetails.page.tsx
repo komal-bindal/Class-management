@@ -38,11 +38,9 @@ const GroupDetails: React.FC<Props> = (props) => {
     }
     if (index! === 0) {
       prevDisabled = true;
-      console.log("prevDisabled run");
     }
     if (index! === groups.length - 1) {
       nextDisabled = true;
-      console.log("nextDisabled run");
     }
   }
 
@@ -110,7 +108,6 @@ const GroupDetails: React.FC<Props> = (props) => {
                   index = index - 1;
                   history.push(`/groups/id/${groups[index].id}`);
                 }
-                console.log("clicked");
               }}
             >
               Previous
@@ -125,7 +122,6 @@ const GroupDetails: React.FC<Props> = (props) => {
                   index = index + 1;
                   history.push(`/groups/id/${groups[index].id}`);
                 }
-                console.log("clicked");
               }}
             >
               Next

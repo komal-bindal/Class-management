@@ -8,6 +8,7 @@ import { sidebarReducer } from "./reducers/sidebar.reducer";
 import { userReducer } from "./reducers/users.reducer";
 import { sagaMiddleware } from "./sagas";
 import { watchGroupQueryChanged } from "./sagas/groups.sagas";
+import { watchUsers } from "./sagas/users.sagas";
 
 const reducer = combineReducers({
   users: userReducer,
@@ -23,6 +24,7 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(watchGroupQueryChanged);
+sagaMiddleware.run(watchUsers);
 
 export type AppState = ReturnType<typeof reducer>;
 

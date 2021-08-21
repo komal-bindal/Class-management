@@ -1,7 +1,7 @@
 import React from "react";
 import { ImSpinner } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { groupQueryAction } from "../../actions/groups.actions";
+import { groupFetchOneAction, groupQueryAction } from "../../actions/groups.actions";
 import ListGroup from "../../components/ListGroup/ListGroup";
 
 import {
@@ -29,6 +29,8 @@ const Groups: React.FC<Props> = ({ status }) => {
 
   let count = true;
 
+  const baseLink = "/groups";
+
   return (
     <div className="p-10 flex flex-col items-center  w-full bg-gray-100 ">
       <div className="h-10 ">
@@ -49,9 +51,11 @@ const Groups: React.FC<Props> = ({ status }) => {
         {groups.length > 0 &&
           groups.map((group: any) => (
             <ListGroup
+            dispatchedAction = {groupFetchOneAction(group.id)}
               className={(count = !count) ? "bg-white" : "bg-gray-300"} //eslint-disable-line
               name={group.name}
               id={group.id}
+              baseLink={baseLink}
               title={group.description}
               image={group.group_image_url}
             ></ListGroup>

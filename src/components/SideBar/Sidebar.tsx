@@ -3,7 +3,7 @@ import SidebarTab from "./SidebarTab";
 import { AiOutlineHome } from "react-icons/ai";
 import { logout } from "../../api";
 import { BiLogOut, BiVideoRecording } from "react-icons/bi";
-import { HiUserGroup } from "react-icons/hi";
+import { HiUserGroup, HiUsers } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { Transition } from "@headlessui/react";
 import { useAppSelector } from "../../store";
@@ -28,6 +28,10 @@ const Sidebar: React.FC<Props> = (props) => {
   const goToGroups = () => {
     history.push("/groups");
     headerActions.uiHeaderTitleChangeAction("Groups");
+  };
+  const goToUsers = () => {
+    history.push("/users");
+    headerActions.uiHeaderTitleChangeAction("Users");
   };
   const headerTitle = useAppSelector((state) => headerTitleSelector(state));
 
@@ -67,6 +71,13 @@ const Sidebar: React.FC<Props> = (props) => {
             className={headerTitle === "Groups" ? "bg-white" : ""}
           >
             Groups
+          </SidebarTab>
+          <SidebarTab
+            Icon={HiUsers}
+            handleClick={goToUsers}
+            className={headerTitle === "Users" ? "bg-white" : ""}
+          >
+            Users
           </SidebarTab>
           <SidebarTab Icon={BiLogOut} handleClick={logout} className={""}>
             Logout

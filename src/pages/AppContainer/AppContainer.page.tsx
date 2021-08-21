@@ -9,6 +9,8 @@ import GroupsPage from "./Groups.page";
 import LecturePage from "./Lecture.page";
 import ProfilePage from "./Profile.page";
 import RecordingsPage from "./Recordings.page";
+import UserDetailsPage from "./UserDetails.page";
+import UsersPage from "./Users.page";
 
 interface Props {}
 
@@ -31,6 +33,12 @@ const AppContainer: React.FC<Props> = (props) => {
           </Route>
           <Route path="/groups/id/:id">
             <GroupDetailsPage></GroupDetailsPage>
+          </Route>
+          <Route path="/users" exact>
+            <UsersPage></UsersPage>
+          </Route>
+          <Route path="/users/id/:id">
+            <UserDetailsPage></UserDetailsPage>
           </Route>
           <Route path="/batch/:batchNumber/lecture/:lectureNumber">
             <LecturePage />

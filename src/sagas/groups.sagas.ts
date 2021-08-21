@@ -26,7 +26,6 @@ function* fetchGroups(dispatchedAction: AnyAction): Generator<any> {
 }
 
 function* fetchOneGroup(dispatchedAction: AnyAction): Generator<any> {
-  console.log("fetchOneGroup called");
   try {
     const response: any = yield call(
       fetchOneGroupApi,
@@ -37,7 +36,6 @@ function* fetchOneGroup(dispatchedAction: AnyAction): Generator<any> {
     );
   } catch (e) {
     const error = e.response.data?.message || "Some error occured!";
-    console.log(error);
     yield put(groupFetchOneErrorAction(dispatchedAction.payload.id, error));
   }
 }
