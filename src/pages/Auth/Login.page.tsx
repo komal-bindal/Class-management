@@ -13,6 +13,7 @@ interface Props {}
 
 const Login: React.FC<Props> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
   const history = useHistory();
   const {
     isSubmitting,
@@ -34,8 +35,7 @@ const Login: React.FC<Props> = (props) => {
           authActions.meLoginAction(u);
         })
         .catch((e) => {
-          console.log("error", e);
-          window.location.href = "/login";
+          setLoginError("Wrong username or password");
         });
     },
     validationSchema: yup
@@ -60,6 +60,11 @@ const Login: React.FC<Props> = (props) => {
           <span className="underline text-blue-600">Create an account</span>
         </Link>
       </h3>
+      {!loginError && <div className="h-10"></div>}
+      {loginError && (
+        <div className="h-10 text-red-600 text-xl">{loginError}</div>
+      )}
+
       <form className="w-full text-sm" onSubmit={handleSubmit}>
         <Input
           id="email"
@@ -88,9 +93,8 @@ const Login: React.FC<Props> = (props) => {
             <div
               onClick={() => setShowPassword(!showPassword)}
               className={
-                " ml-4 h-4 w-8   rounded-lg " + (showPassword
-                  ? "bg-blue-500"
-                  : "bg-blue-100")
+                " ml-4 h-4 w-8   rounded-lg " +
+                (showPassword ? "bg-blue-500" : "bg-blue-100")
               }
             >
               {!showPassword && (
@@ -102,9 +106,11 @@ const Login: React.FC<Props> = (props) => {
             </div>
           </div>
           <div className="flex items-center">
-            {isSubmitting && !(errors.password || errors.email) && (
-              <ImSpinner className="animate-spin mr-3"></ImSpinner>
-            )}
+            {isSubmitting &&
+              !(errors.password || errors.email) &&
+              !loginError && (
+                <ImSpinner className="animate-spin mr-3"></ImSpinner>
+              )}
             <Button
               disabled={!isValid}
               type="submit"
