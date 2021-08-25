@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { ImSpinner } from "react-icons/im";
 import { FiLock, FiUser } from "react-icons/fi";
@@ -12,6 +12,7 @@ import { authActions } from "../../actions/auth.actions";
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
+  const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
   const {
     isSubmitting,
@@ -75,14 +76,31 @@ const Login: React.FC<Props> = (props) => {
           placeholder="Password"
           touched={touched.password}
           error={errors.password}
-          type="password"
+          type={showPassword ? "text" : "password"}
           {...getFieldProps("password")}
           autoComplete="current-password"
           Icon={FiLock}
           className="mb-3"
         ></Input>
         <div className=" flex flex-col items-start  xs:flex-row xs:justify-between xs:items-center">
-          <div className="pb-5 xs:pb-0">Show Password</div>
+          <div className="flex flex-row justify-center items-center">
+            <div className="pb-5 xs:pb-0">Show Password</div>
+            <div
+              onClick={() => setShowPassword(!showPassword)}
+              className={
+                " ml-4 h-4 w-8   rounded-lg " + (showPassword
+                  ? "bg-blue-500"
+                  : "bg-blue-100")
+              }
+            >
+              {!showPassword && (
+                <div className="w-4 rounded-full h-full bg-blue-500 "></div>
+              )}
+              {showPassword && (
+                <div className="w-4 rounded-full h-full bg-white ml-auto"></div>
+              )}
+            </div>
+          </div>
           <div className="flex items-center">
             {isSubmitting && !(errors.password || errors.email) && (
               <ImSpinner className="animate-spin mr-3"></ImSpinner>
